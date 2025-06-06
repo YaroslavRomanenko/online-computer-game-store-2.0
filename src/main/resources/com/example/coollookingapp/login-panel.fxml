@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+
+<AnchorPane id="loginInvisibleFrame" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="571.0" prefWidth="540.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.coollookingapp.LoginRegisterController">
+   <AnchorPane id="loginFrame" layoutX="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="571.0" prefWidth="536.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+      <StackPane id="titleBar" alignment="CENTER_LEFT" layoutY="-2.0" prefHeight="36.0" prefWidth="536.0" styleClass="topManagePanel">
+         <children>
+            <Label styleClass="appTitle" text="Universal games" />
+         </children></StackPane>
+      <AnchorPane id="loginPanel" layoutX="20.0" layoutY="74.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="496.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+         <children>
+            <Button id="signInButton" contentDisplay="CENTER" layoutX="97.0" layoutY="346.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="133.0" text="Sign-in" textAlignment="CENTER" />
+            <Button id="registerButton" contentDisplay="CENTER" layoutX="269.0" layoutY="346.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="133.0" text="Register" textAlignment="CENTER" />
+            <TextField id="textLogin" layoutX="116.0" layoutY="105.0" prefHeight="26.0" prefWidth="264.0" promptText="Username" styleClass="underlined-textfield" />
+            <PasswordField id="textPassword" layoutX="116.0" layoutY="233.0" prefHeight="26.0" prefWidth="264.0" promptText="Password" styleClass="underlined-textfield" AnchorPane.leftAnchor="116.0" AnchorPane.rightAnchor="116.0" />
+            <Label id="signInLabel" layoutX="215.0" layoutY="28.0" text="Sign in" />
+         </children>
+      </AnchorPane>
+      <StackPane fx:id="exitButton" layoutX="500.0" layoutY="5.0" onMouseClicked="#handleExitBtnClick" prefHeight="24.0" prefWidth="24.0" styleClass="whiteCross">
+         <children>
+            <ImageView fitHeight="14.0" fitWidth="14.0">
+               <image>
+                  <Image url="@app_icons/WhiteCross.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <StackPane fx:id="minimizeButton" layoutX="460.0" layoutY="5.0" onMouseClicked="#handleMinimizeBtnClick" prefHeight="24.0" prefWidth="24.0" styleClass="whiteMinimize">
+         <children>
+            <ImageView fitHeight="14.0" fitWidth="14.0">
+               <image>
+                  <Image url="@app_icons/minimizeWhite.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+   </AnchorPane>
+</AnchorPane>

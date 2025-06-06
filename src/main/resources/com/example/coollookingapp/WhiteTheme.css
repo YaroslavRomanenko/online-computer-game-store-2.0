@@ -1,0 +1,93 @@
+.root {
+    -fx-background-color: #F8FAFC;
+    -fx-font-size: 14px;
+    -fx-alignment: center;
+    -fx-font-family: "Poppins", sans-serif;
+}
+
+#loginInvisibleFrame {
+    -fx-background-color: transparent;
+}
+
+#loginFrame, .button {
+    -fx-background-color: #2F2F2F;
+}
+
+#loginPanel {
+    -fx-background-color: white;
+
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 25, 0, 0, 2);
+}
+
+#loginFrame, #loginPanel, .button {
+    -fx-background-radius: 12px;
+}
+
+#signInLabel {
+    -fx-font-size: 20px;
+}
+
+.appTitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: white;
+    -fx-padding: 0 0 0 10px;
+}
+
+.whiteCross:hover {
+    -fx-background-color: #D9534F;
+}
+
+.whiteMinimize:hover {
+    -fx-background-color: #525252;
+}
+
+.whiteCross, .whiteMinimize {
+    -fx-background-color: #474747;
+    -fx-background-radius: 20px;
+}
+
+.button {
+    -fx-text-fill: #F8FAFC;
+    -fx-cursor: hand;
+    -fx-alignment: center;
+}
+
+.button:hover {
+    -fx-background-color: #404040;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 10, 0, 0, 3);
+}
+
+.button:pressed {
+    -fx-background-color: #252525;
+    -fx-effect: none;
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+.underlined-textfield {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-padding: 2px 0 2px 5px;
+    -fx-font-size: 16px;
+
+    -fx-border-color: #2C2C2C;
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-radius: 0;
+
+    -fx-prompt-text-fill: #808080;
+}
+
+#textPassword {
+    -fx-text-security-char: '•';
+}
+
+.text-field:focused {
+    -fx-border-color: #6A1B9A;
+    -fx-border-width: 0 0 2px 0;
+}
+
+.topManagePanel {
+    -fx-background-color: #393939;
+    -fx-background-radius: 10px 10px 0 0;
+}
