@@ -22,8 +22,34 @@ jobs:
           distribution: 'temurin'
           cashe: maven
 
+      - name: Install WiX Toolset
+        if: matrix.os == 'windows-latest'
+        uses: wixtoolset/wix-actions/install@v1
+    
+      - name: Download and setup JavaFX SDK
+        run: |
+          JFX_VERSION=21.0.2
+          if [ "${{ matrix.os }}" = "windows-latest" ]; then
+            JFX_PLATFORM=win
+            JFX_ARCHIVE_TYPE=zip
+          else
+            JFX_PLATFORM=linux
+            JFX_ARCHIVE_TYPE=tar.gz
+          fi
+          
+          curl -L -o "javafx-sdk.${JFX_ARCHIVE_TYPE}" "https://download2.gluonhq.com/openjfx/${JFX_VERSION}/openjfx-${JFX_VERSION}_${JFX_PLATFORM}-x64_bin-sdk.${JFX_ARCHIVE_TYPE}"
+          
+          if [ "${{ matrix.os }}" = "windows-latest" ]; then
+            powershell -Command "Expand-Archive javafx-sdk.zip -DestinationPath ."
+          else
+            tar -xzf javafx-sdk.tar.gz
+          fi
+  
+          echo "JFX_SDK_PATH=${{ github.workspace }}/javafx-sdk-${JFX_VERSION}" >> $GITHUB_ENV
+
+
       - name: Build Application
-        run: mvn -B package --file pom.xml
+        run: mvn -B package -Djavafx.sdk.path=${{ env.JFX_SDK_PATH }}/lib
 
       - name: Update dependency graph
         uses: advanced-security/maven-dependency-submission-action@v4
