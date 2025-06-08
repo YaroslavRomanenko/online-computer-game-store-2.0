@@ -12,7 +12,7 @@ jobs:
       uses: actions/setup-java@v4
       with:
         java-version: '21'
-        distribution: 'open'
+        distribution: 'zulu'
         cache: maven
     - name: Build Application
       run: mvn -B package --file pom.xml
