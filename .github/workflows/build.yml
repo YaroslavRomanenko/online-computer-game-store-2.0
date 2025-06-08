@@ -14,9 +14,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
+      uses: actions/checkout@v3
 
     - name: Set up JDK 21
       uses: actions/setup-java@v4
@@ -28,7 +26,6 @@ jobs:
       shell: bash 
       run: |
         JFX_VERSION=21.0.2
-        # Визначаємо платформу та тип архіву
         if [ "${{ matrix.os }}" == "windows-latest" ]; then
           JFX_PLATFORM="win"
           JFX_ARCHIVE_TYPE="zip"
@@ -37,12 +34,10 @@ jobs:
           JFX_ARCHIVE_TYPE="tar.gz"
         fi
         
-        # Завантажуємо архів за допомогою WGET, а не CURL
         JFX_URL="https://download2.gluonhq.com/openjfx/${JFX_VERSION}/openjfx-${JFX_VERSION}_${JFX_PLATFORM}-x64_bin-sdk.${JFX_ARCHIVE_TYPE}"
         echo "Downloading JavaFX from ${JFX_URL}"
-        wget -O "javafx-sdk.${JFX_ARCHIVE_TYPE}" "${JFX_URL}"
-        
-        # Розпаковуємо відповідний архів
+        curl --location --request GET "${JFX_URL}" --header "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36" -o "javafx-sdk.${JFX_ARCHIVE_TYPE}"
+
         echo "Unpacking JavaFX SDK..."
         if [ "${{ matrix.os }}" == "windows-latest" ]; then
           unzip "javafx-sdk.zip"
@@ -50,11 +45,10 @@ jobs:
           tar -xzf "javafx-sdk.tar.gz"
         fi
 
-        # Встановлюємо шлях до SDK у змінну середовища
         echo "JFX_SDK_PATH=${{ github.workspace }}/javafx-sdk-${JFX_VERSION}" >> $GITHUB_ENV
 
     - name: Build with Maven
-      shell: bash
+      shell: bash 
       run: mvn -B package -Djavafx.sdk.path=${{ env.JFX_SDK_PATH }}/lib
 
     - name: Upload Artifacts
