@@ -9,8 +9,8 @@
     -fx-background-color: transparent;
 }
 
-#loginFrame, .button {
-    -fx-background-color: #2F2F2F;
+#loginFrame {
+    -fx-background-color: #CCCCCC;
 }
 
 #loginPanel {
@@ -48,6 +48,7 @@
 
 .button {
     -fx-text-fill: #F8FAFC;
+    -fx-background-color: #2F2F2F;
     -fx-cursor: hand;
     -fx-alignment: center;
 }
@@ -89,5 +90,5 @@
 
 .topManagePanel {
     -fx-background-color: #393939;
-    -fx-background-radius: 10px 10px 0 0;
+    -fx-background-radius: 12px 12px 0 0;
 }

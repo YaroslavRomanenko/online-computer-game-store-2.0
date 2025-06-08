@@ -1,16 +1,18 @@
 package com.example.coollookingapp;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class LoginRegisterController {
-    private Stage stage;
+    private Stage primaryStage;
 
     public void setStage(Stage stage) {
-        this.stage = stage;
+        this.primaryStage = stage;
     }
 
     @FXML
@@ -23,7 +25,7 @@ public class LoginRegisterController {
     private Button singIn;
 
     @FXML
-    private Button singOut;
+    private Button registerButton;
 
     @FXML
     private StackPane exitButton;
@@ -40,10 +42,13 @@ public class LoginRegisterController {
     }
 
     @FXML
-    protected void handleMinimizeBtnClick() {
-        if (stage != null) {
-            stage.setIconified(true);
-        }
+    protected void handleMinimizeBtnClick(MouseEvent e) {
+        Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+    @FXML
+    protected void handleRegisterBtnClick() {
     }
 
 }
