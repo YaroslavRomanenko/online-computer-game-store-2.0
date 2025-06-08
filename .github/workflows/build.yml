@@ -10,7 +10,6 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-latest, windows-latest ]
-
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -24,27 +23,35 @@ jobs:
         distribution: 'temurin'
     
     - name: Download and setup JavaFX SDK
+      shell: bash
       run: |
         JFX_VERSION=21.0.2
-        if [ "${{ matrix.os }}" = "windows-latest" ]; then
-          JFX_PLATFORM=win
-          JFX_ARCHIVE_TYPE=zip
+        # Визначаємо платформу та тип архіву
+        if [ "${{ matrix.os }}" == "windows-latest" ]; then
+          JFX_PLATFORM="win"
+          JFX_ARCHIVE_TYPE="zip"
         else
-          JFX_PLATFORM=linux
-          JFX_ARCHIVE_TYPE=tar.gz
+          JFX_PLATFORM="linux"
+          JFX_ARCHIVE_TYPE="tar.gz"
         fi
         
-        curl -L -o "javafx-sdk.${JFX_ARCHIVE_TYPE}" "https://download2.gluonhq.com/openjfx/${JFX_VERSION}/openjfx-${JFX_VERSION}_${JFX_PLATFORM}-x64_bin-sdk.${JFX_ARCHIVE_TYPE}"
+        # Завантажуємо архів
+        JFX_URL="https://download2.gluonhq.com/openjfx/${JFX_VERSION}/openjfx-${JFX_VERSION}_${JFX_PLATFORM}-x64_bin-sdk.${JFX_ARCHIVE_TYPE}"
+        echo "Downloading JavaFX from ${JFX_URL}"
+        curl -L -o "javafx-sdk.${JFX_ARCHIVE_TYPE}" "${JFX_URL}"
         
-        if [ "${{ matrix.os }}" = "windows-latest" ]; then
-          powershell -Command "Expand-Archive javafx-sdk.zip -DestinationPath ."
+        # Розпаковуємо відповідний архів
+        if [ "${{ matrix.os }}" == "windows-latest" ]; then
+          unzip "javafx-sdk.zip"
         else
-          tar -xzf javafx-sdk.tar.gz
+          tar -xzf "javafx-sdk.tar.gz"
         fi
 
+        # Встановлюємо шлях до SDK у змінну середовища
         echo "JFX_SDK_PATH=${{ github.workspace }}/javafx-sdk-${JFX_VERSION}" >> $GITHUB_ENV
 
     - name: Build with Maven
+      shell: bash
       run: mvn -B package -Djavafx.sdk.path=${{ env.JFX_SDK_PATH }}/lib
 
     - name: Upload Artifacts
