@@ -1,0 +1,33 @@
+.root {
+    -fx-background-color: #F8FAFC;
+    -fx-font-size: 14px;
+    -fx-alignment: center;
+    -fx-font-family: "Poppins", sans-serif;
+}
+
+.invisibleFrame {
+    -fx-background-color: transparent;
+}
+
+.storePanel {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+}
+
+.topManagePanel {
+    -fx-background-color: #393939;
+    -fx-background-radius: 12px 12px 0 0;
+}
+
+.whiteCross, .whiteMaximize, .whiteMinimize {
+    -fx-background-color: #474747;
+    -fx-background-radius: 20px;
+}
+
+.whiteCross:hover {
+    -fx-background-color: #D9534F;
+}
+
+.whiteMinimize:hover, .whiteMaximize:hover {
+    -fx-background-color: #525252;
+}
