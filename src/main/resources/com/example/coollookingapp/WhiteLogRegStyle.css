@@ -5,25 +5,25 @@
     -fx-font-family: "Poppins", sans-serif;
 }
 
-#loginInvisibleFrame {
+.invisibleFrame {
     -fx-background-color: transparent;
 }
 
-#loginFrame {
+.mainFrame {
     -fx-background-color: #CCCCCC;
 }
 
-#loginPanel {
+.actionPanel {
     -fx-background-color: white;
 
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 25, 0, 0, 2);
 }
 
-#loginFrame, #loginPanel, .button {
+.mainFrame, .actionPanel, .button {
     -fx-background-radius: 12px;
 }
 
-#signInLabel {
+.headerLabel {
     -fx-font-size: 20px;
 }
 
@@ -79,14 +79,15 @@
     -fx-prompt-text-fill: #808080;
 }
 
-#textPassword {
-    -fx-text-security-char: '•';
-}
-
-.text-field:focused {
+.underlined-textfield:focused {
     -fx-border-color: #6A1B9A;
     -fx-border-width: 0 0 2px 0;
 }
+
+.underlined-textfield:hover {
+    -fx-cursor: text;
+}
+
 
 .topManagePanel {
     -fx-background-color: #393939;
